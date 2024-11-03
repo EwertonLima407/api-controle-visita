@@ -11,7 +11,10 @@ router.get('/', (_, res) => {
     return res.send('Conectado!!');
 });
 
-router.post('/setores',SetoresControllers.create);
+router.post('/setores',
+    SetoresControllers.createValidation, 
+    SetoresControllers.create);
+
 router.get('/setores', (req, res) => {
     return res.send('Home setores!')
 });
@@ -19,6 +22,7 @@ router.get('/setores', (req, res) => {
 
 
 router.post('/visitantes', VisitantesControllers.create);
+
 router.get('/visitantes', (req, res) => {
     return res.send('Home Vistas!')
 });
