@@ -2,6 +2,6 @@ import * as create from "./Create";
 
 
 
-export const VisitantesControllers = {
+export const VisitantesController = {
     ...create,
 };

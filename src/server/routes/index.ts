@@ -1,7 +1,8 @@
 import { Router } from "express";
+
 import { StatusCodes } from 'http-status-codes'
 
-import {SetoresControllers, VisitantesControllers } from './../controllers'
+import {SetoresController, VisitantesController } from './../controllers'
 
 
 
@@ -11,21 +12,17 @@ router.get('/', (_, res) => {
     return res.send('Conectado!!');
 });
 
-router.post('/setores',
-    SetoresControllers.createValidation, 
-    SetoresControllers.create);
-
-router.get('/setores', (req, res) => {
-    return res.send('Home setores!')
-});
+router.get('/setores',SetoresController.getAllValidation, SetoresController.getAll);
+router.post('/setores',SetoresController.createValidation, SetoresController.create);
+router.get('/setores/:id',SetoresController.getByIdValidation , SetoresController.getById);
+router.put('/setores/:id',SetoresController.updateByIdValidation , SetoresController.updateById);
+router.delete('/setores/:id',SetoresController.deleteByIdValidation , SetoresController.deleteById);
 
 
 
-router.post('/visitantes', VisitantesControllers.create);
 
-router.get('/visitantes', (req, res) => {
-    return res.send('Home Vistas!')
-});
 
+router.post('/visitantes', VisitantesController.create);
+ 
 
 export { router };
