@@ -4,20 +4,19 @@ import * as yup from 'yup';
 import { validation } from "../../shared/middlewares";
 import { StatusCodes } from "http-status-codes";
 
-interface IVisitante{
-    nome: string;
-    documento: string;
-    fone: number;
+interface IDestino{
+    recebedor: string;
+    obs: string;
 }
+
 interface IFilter{
     filter?: string;
 }
 
 export const createValidation = validation((getSchema) => ({
-    body: getSchema<IVisitante>(yup.object().shape({
-        nome: yup.string().required().min(3),
-        documento: yup.string().required().min(5).max(11),
-        fone: yup.number().integer().required().min(10),
+    body: getSchema<IDestino>(yup.object().shape({
+        recebedor: yup.string().required().min(3),
+        obs: yup.string().required().min(5).max(150),
     })),
     query: getSchema<IFilter>(yup.object().shape({
         filter: yup.string().optional().min(3),

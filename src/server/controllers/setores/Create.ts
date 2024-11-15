@@ -3,6 +3,7 @@ import * as yup from 'yup';
 
 import { validation } from "../../shared/middlewares";
 import { StatusCodes } from "http-status-codes";
+
 interface ISetor{
     nome_setor: string;
     sigla: string;
@@ -23,7 +24,14 @@ export const createValidation = validation((getSchema) => ({
 }))
 
 export const create = async (req: Request<{}, {}, ISetor>, res: Response) => {
-    console.log(req.body)
+    const result = await console.log(req.body)
     
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('Não implementado!');
+   /*  if (result instanceof Error) {
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            errors: {
+                default: result.message
+            }
+        })s
+    } */
+    return res.status(StatusCodes.CREATED).json({});
 };
